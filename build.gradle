@@ -20,11 +20,11 @@ android {
     buildToolsVersion "24.0.0 rc3"
 
     defaultConfig {
-        applicationId "com.anysoftkeyboard.languagepack.languagepack"
+        applicationId "com.anysoftkeyboard.languagepack.hebrew"
         minSdkVersion 7
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionCode 99
+        versionName "2.0"
     }
 
     signingConfigs {
@@ -47,26 +47,52 @@ android {
     }
 }
 
-task parseStateAssembly(type: com.anysoftkeyboard.tools.generatewordslist.GenerateWordsListTask) {
-    inputFile new File(project.getProjectDir(), "dictionary/NY_STATE_ASSEMBLY_TRANSCRIPT_20120621.txt")
-    outputWordsListFile new File(project.getProjectDir(), "dictionary/words_ny_state_assembly.xml")
+def hebrewCharacters = "אבגדהוזחטיכלמנסעפצקרשת".toCharArray()
+def additionalInnerHebrewCharacters = "ץםןף\"'".toCharArray()
+
+task parseHearing(type: com.anysoftkeyboard.tools.generatewordslist.GenerateWordsListTask) {
+    inputFile new File(project.getProjectDir(), "dictionary/Hearing_Transcript.txt")
+    outputWordsListFile new File(project.getProjectDir(), "dictionary/words_hearing_transcript.xml")
+    wordCharacters = hebrewCharacters
+    additionalInnerCharacters = additionalInnerHebrewCharacters
 }
 
-task parseEnWikipediaEnglishCivilWar(type: com.anysoftkeyboard.tools.generatewordslist.GenerateWordsListTask) {
-    inputFile new File(project.getProjectDir(), "dictionary/First_English_Civil_War_Wikipedia.htm")
+task parseHeWikipediaIsrael(type: com.anysoftkeyboard.tools.generatewordslist.GenerateWordsListTask) {
+    inputFile new File(project.getProjectDir(), "dictionary/Israel_wikipedia.htm")
     inputFileType = com.anysoftkeyboard.tools.generatewordslist.GenerateWordsListTask.InputFileType.Html
-    //Download the archive from https://dumps.wikimedia.org/other/static_html_dumps/current/simple/
-    outputWordsListFile new File(project.getProjectDir(), "dictionary/words_en_wikipedia_civil_war.xml")
+    outputWordsListFile new File(project.getProjectDir(), "dictionary/words_israel_wikipedia.xml")
+    wordCharacters = hebrewCharacters
+    additionalInnerCharacters = additionalInnerHebrewCharacters
+}
+
+task parseHeWikipediaIsraelTalk(type: com.anysoftkeyboard.tools.generatewordslist.GenerateWordsListTask) {
+    inputFile new File(project.getProjectDir(), "dictionary/Israel_talk_wikipedia.htm")
+    inputFileType = com.anysoftkeyboard.tools.generatewordslist.GenerateWordsListTask.InputFileType.Html
+    outputWordsListFile new File(project.getProjectDir(), "dictionary/words_israel_wikipedia_talk.xml")
+    wordCharacters = hebrewCharacters
+    additionalInnerCharacters = additionalInnerHebrewCharacters
+}
+
+task parseHeWikipediaSlang(type: com.anysoftkeyboard.tools.generatewordslist.GenerateWordsListTask) {
+    inputFile new File(project.getProjectDir(), "dictionary/Slang_wikipedia.htm")
+    inputFileType = com.anysoftkeyboard.tools.generatewordslist.GenerateWordsListTask.InputFileType.Html
+    outputWordsListFile new File(project.getProjectDir(), "dictionary/words_slang_wikipedia_talk.xml")
+    wordCharacters = hebrewCharacters
+    additionalInnerCharacters = additionalInnerHebrewCharacters
 }
 
 task mergeAllWordLists(type: com.anysoftkeyboard.tools.generatewordslist.MergeWordsListTask) {
-    dependsOn parseStateAssembly
-    dependsOn parseEnWikipediaEnglishCivilWar
+    dependsOn parseHearing
+    dependsOn parseHeWikipediaIsrael
+    dependsOn parseHeWikipediaIsraelTalk
+    dependsOn parseHeWikipediaSlang
 
     inputWordsListFiles = [
-            new File(project.getProjectDir(), "dictionary/words_ny_state_assembly.xml"),
-            new File(project.getProjectDir(), "dictionary/popular_websites_words.xml"),//website I use most
-            new File(project.getProjectDir(), "dictionary/words_en_wikipedia_civil_war.xml")
+            new File(project.getProjectDir(), "dictionary/words.xml"),//legacy
+            new File(project.getProjectDir(), "dictionary/words_hearing_transcript.xml"),
+            new File(project.getProjectDir(), "dictionary/words_israel_wikipedia.xml"),
+            new File(project.getProjectDir(), "dictionary/words_israel_wikipedia_talk.xml"),
+            new File(project.getProjectDir(), "dictionary/words_slang_wikipedia_talk.xml")
     ] as File[]
     outputWordsListFile new File(project.getProjectDir(), "dictionary/words_merged.xml")
     maxWordsInList 100000

@@ -1,4 +1,4 @@
-package com.anysoftkeyboard.languagepack.languagepack;
+package com.anysoftkeyboard.languagepack.hebrew;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
