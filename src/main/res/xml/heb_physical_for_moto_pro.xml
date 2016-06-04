@@ -4,5 +4,5 @@
 	<SequenceMapping keySequence="29" altModifier="true" targetChar="&#x20aa;"/><!-- ALT SHIN is SHEKEL -->
 	<!-- keycode_period -->
 	<SequenceMapping keySequence="56" targetChar="&#x05ea;"/>
-	<SequenceMapping keySequence="56" altModifier="true" targetCharCode="."/>
+	<SequenceMapping keySequence="56" altModifier="true" targetChar="."/>
 </PhysicalTranslation>
