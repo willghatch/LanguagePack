@@ -20,7 +20,7 @@ android {
     buildToolsVersion "24.0.0"
 
     defaultConfig {
-        applicationId "com.anysoftkeyboard.languagepack.languagepack"
+        applicationId "com.anysoftkeyboard.languagepack.wghqwerty"
         minSdkVersion 7
         targetSdkVersion 23
         versionCode 1
@@ -40,7 +40,7 @@ android {
         release {
             signingConfig signingConfigs.release
             zipAlignEnabled true
-            debuggable false
+            debuggable true
 
             minifyEnabled false
         }
