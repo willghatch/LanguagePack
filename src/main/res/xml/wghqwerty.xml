@@ -14,14 +14,23 @@
          "android:keyWidth" : specify the width of this key
          -->
 
-        <!-- -1 is shift, 
+        <!-- 
+        -1 is shift, 
+        -2 ? - switches to symbol layout
+        -3 ?
+        -4 - voice button
+        -5 backspace
+        -6 - supposedly alt, but doesn't seem to work.  It DOES affect the button color, though...
+        -7 ?
+        -8 ?
         -9 is a .com thing, 
         -10 is an emoji thing, 
         -11 is control, 
-        -6 is maybe alt (but it doesn't seem to work), 
+        -14 caps lock
+        -15 control lock
         -22 is up, -23 down, 
         -20 left, -21 right, 
-        -5 is backspace-->
+        -->
         <!-- other codes are unicode values -->
 
         <Key android:codes="113" android:keyLabel="q" android:popupCharacters="1" android:keyEdgeFlags="left"/>
